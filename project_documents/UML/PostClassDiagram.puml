@@ -31,10 +31,6 @@ class Post {
 }
 
 class User {
-    - name: String
-    - id: int
-    - bio: String
-    - posts: ArrayList<Post>
 }
 
 @enduml

@@ -1,4 +1,4 @@
-<%
+<%@ page import="java.util.Arrays"%> <%
     String name = request.getParameter("name");
 
     int e = 0;
@@ -13,14 +13,8 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport content="width=device-width, initial-scale="1.0">
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="index.js" defer></script>
-    <title>Fun with JS!</title>
-</head>
+<% String title = "forum"; %>
+<%@include file="header.jsp" %>
 <body>
 <h2>My Playlists</h2>
 <ul id="playlists">

@@ -6,11 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
 
+<% final String title = "Account"; %>
+<%@ include file="../main/header.jsp"%>
+<p>This page will include all the users person information</p>
 </body>
 </html>
