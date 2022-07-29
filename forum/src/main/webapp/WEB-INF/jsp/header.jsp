@@ -28,7 +28,7 @@
     </div>
 <nav>
     <button><a href="/">Home</a></button>
-    <button><a href="<%= request.getContextPath() + "/account/registration" %>">registration</a></button>
+    <button><a href="<%= request.getContextPath() + "/account/registration" %>">Registration</a></button>
 </nav>
 </body>
 </html>

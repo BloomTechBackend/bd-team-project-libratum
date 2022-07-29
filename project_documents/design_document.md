@@ -121,6 +121,10 @@ This section maps the attributes of our tables, with the corresponding DDB type.
 
 
 # 8. Pages
+![](../../../Desktop/Libratum page mockups.png)
+
+
+
 
 *Include mock-ups of the web pages you expect to build. These can be as
 sophisticated as mockups/wireframes using drawing software, or as simple as
