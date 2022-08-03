@@ -1,11 +1,16 @@
 package libratum.unit5.forum.pages;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperFieldModel;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTyped;
 import daos.PostDAO;
 import daos.PostThreadDAO;
 import daos.UsersDAO;
 import libratum.unit5.forum.ForumApplication;
 import models.PostThread;
 import models.Users;
+import models.converter.ConverterForPost;
+import models.converter.ConverterForPostThread;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +21,16 @@ import java.util.Date;
 
 @Controller
 @RequestMapping(value = "/thread")
+
+
 public class Post {
 
+
     private final PostDAO dao = new PostDAO(ForumApplication.getDB());
+
+
     private final PostThreadDAO postThreadDAO = new PostThreadDAO(ForumApplication.getDB());
+
     private final UsersDAO userDAO = new UsersDAO(ForumApplication.getDB());
 
     @GetMapping(value = "thread-{PostThreadId}")
@@ -51,8 +62,11 @@ public class Post {
         }
 
         models.Post post = new models.Post(
-                thread,
-                currentUser.getId(),
+
+
+                "thread",
+                currentUser,
+
                 content,
                 new java.util.Date(),
                 0
@@ -60,7 +74,7 @@ public class Post {
 
 
         thread.addPost(post);
-        currentUser.getPosts().add(post);
+        //currentUser.getPosts();
 
         // update db
         this.postThreadDAO.update(threadId, thread);
@@ -71,6 +85,7 @@ public class Post {
 
 
     @PostMapping(value = "create-thread")
+    @DynamoDBTypeConverted(converter = ConverterForPost.class)
     public String createPost(Model model,
             @RequestParam(value = "title") String title,
             @RequestParam(value = "post_content") String postContent
@@ -84,8 +99,10 @@ public class Post {
         thread.setTitle(title);
 
         models.Post post = new models.Post();
-        post.setPostThread(thread);
-        post.setFromUser(user.getId());
+
+        post.setPostThread(thread.getId());
+        post.setFromUser(user);
+
         post.setContent(postContent);
         post.setDate(new Date());
         post.setLikes(0);

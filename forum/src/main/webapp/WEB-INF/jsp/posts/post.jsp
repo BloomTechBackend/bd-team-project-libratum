@@ -25,10 +25,10 @@
                     <tbody>
                     <tr>
                         <td><h3><%= thread.getTitle() %></h3></td>
-                        <td><%= thread.getPost(0).getFromUser().getUsername() %></td>
+                        <td><%= thread.getPosts().get(0) %></td>
                     </tr>
                     <tr>
-                        <td><%= thread.getPost(0).getContent() %></td>
+                        <td><%= thread.getPosts().get(0) %></td>
                     </tr>
                     </tbody>
                 </table>

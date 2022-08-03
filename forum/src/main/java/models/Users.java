@@ -32,10 +32,12 @@ public class Users {
     private UserType type;
     @DynamoDBAttribute
     private String bio;
+
     @DynamoDBAttribute
-    private List<Post> posts;
-    @DynamoDBAttribute
-    private List<Wine> favorites;
+    @DynamoDBTyped(DynamoDBMapperFieldModel.DynamoDBAttributeType.S)
+    private Post posts;
+//    @DynamoDBAttribute
+//    private List<Wine> favorites;
 
 
     public Users() {
@@ -46,8 +48,8 @@ public class Users {
         this.password = password;
         this.type = UserType.USER;
         this.bio = "";
-        this.posts = new ArrayList<>();
-        favorites = new ArrayList<>();
+
+//        favorites = new ArrayList<>();
     }
 
 
@@ -67,27 +69,27 @@ public class Users {
 
     @DynamoDBAttribute
     @DynamoDBTyped(DynamoDBMapperFieldModel.DynamoDBAttributeType.S)
-    public List<Post> getPosts() {
-        return posts;
+    public String getPosts() {
+        return posts.getContent();
     }
 
-    public void setPosts(ArrayList<Post> posts) {
+    public void setPosts(Post posts) {
         this.posts = posts;
     }
 
-    @DynamoDBAttribute
-    @DynamoDBTypeConverted(converter = ListConverterForWine.class)
-    public List<Wine> getFavorites() {
-        return favorites;
-    }
+//    @DynamoDBAttribute
+//    @DynamoDBTypeConverted(converter = ListConverterForWine.class)
+//    public List<Wine> getFavorites() {
+//        return favorites;
+//    }
 
-    public void setFavorites(ArrayList<Wine> favorites) {
-        this.favorites = favorites;
-    }
-
-    public boolean addToFavorites(Wine wine) {
-      return favorites.add(wine);
-    }
+//    public void setFavorites(ArrayList<Wine> favorites) {
+//        this.favorites = favorites;
+//    }
+//
+//    public boolean addToFavorites(Wine wine) {
+//      return favorites.add(wine);
+//    }
 
     public void setUsername(String username) {
         this.username = username;
@@ -129,7 +131,7 @@ public class Users {
                 ", type=" + type +
                 ", bio='" + bio + '\'' +
                 ", posts=" + posts +
-                ", favorites=" + favorites +
+//                ", favorites=" + favorites +
                 '}';
     }
 
@@ -141,7 +143,7 @@ public class Users {
                     ", type:" + type +
                     ", bio:'" + bio + '\'' +
                     ", posts:" + posts +
-                    ", favorites:" + favorites +
+//                    ", favorites:" + favorites +
                 '}';
     }
 

@@ -2,12 +2,12 @@ package daos;
 
 
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBSaveExpression;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression;
+import com.amazonaws.services.dynamodbv2.datamodeling.*;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.dynamodbv2.model.ExpectedAttributeValue;
 import models.PostThread;
+import models.converter.ConverterForPostThread;
+import models.converter.ListConverterForPost;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -23,14 +23,17 @@ public class PostThreadDAO {
     }
 
     // Create
+
+
+    @DynamoDBTypeConverted(converter = ConverterForPostThread.class)
     public PostThread savePostThread(PostThread postThread) {
         dynamoDbMapper.save(postThread);
         return postThread;
     }
 
-
+    PostThread thread = new PostThread();
     public PostThread findById(String id) {
-        PostThread thread = null;
+
         try {
             thread = dynamoDbMapper.load(PostThread.class, id);
         } catch(Exception e) {

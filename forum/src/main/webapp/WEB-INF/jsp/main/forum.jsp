@@ -26,12 +26,12 @@
 
 <script type="text/javascript">
     function validate() {
-        let valid = Boolean(<%= (currentUser == null) %>);
-        if(valid) {
+        let invalid = Boolean(<%= (currentUser == null) %>);
+        if(invalid) {
             alert("You need to login to post!");
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 </script>
 
@@ -53,12 +53,12 @@
     <tbody>
     <%
         for(int i = start; i < start + 10; i++) {
-            PostThread thread = dao.findById("" + i);
+            PostThread thread = PostThreadDAO.findById("" + i);
             if(thread == null) {
                 continue;
             }
 
-            List<Post> posts = thread.getPosts();
+            Post post = new Post();
     %>
     <tr class="post" id="<%= request.getContextPath() + "/thread-" + i %>">
         <td>

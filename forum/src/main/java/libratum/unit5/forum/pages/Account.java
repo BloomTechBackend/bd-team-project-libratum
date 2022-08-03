@@ -3,17 +3,21 @@ package libratum.unit5.forum.pages;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
 import daos.UsersDAO;
 import libratum.unit5.forum.ForumApplication;
+import models.Post;
 import models.UserType;
 import models.Users;
 import models.converter.ConverterForUser;
 import models.converter.ListConverterForPost;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 
 @Controller
@@ -21,6 +25,9 @@ import java.util.ArrayList;
 public class Account {
 
     private final UsersDAO dao = new UsersDAO(ForumApplication.getDB());
+
+    @Autowired
+    HttpServletRequest request;
 
     @RequestMapping(value="registration")
     public String accountPage(Model model) {
@@ -37,18 +44,18 @@ public class Account {
     ) {
 
 
-        user.setFavorites(new ArrayList<models.Wine>());
-        user.setPosts(new ArrayList<models.Post>());
+//        user.setFavorites(new ArrayList<models.Wine>());
+        user.setPosts(new Post());
         user.setType(UserType.USER);
         user.setBio("");
 
         this.dao.saveUser(user);
-
+        request.getSession().setAttribute("current_user", user);
         redirectAttributes.addFlashAttribute("current_user", user);
         return "redirect:/account";
     }
 
-    @PostMapping(value = "login")
+    @GetMapping(value = "login")
     public String loginUser(Model model,
                             @ModelAttribute(value = "login_user") Users userToLogin
     ) {
@@ -58,6 +65,7 @@ public class Account {
         Users user = this.dao.findByUsername(userToLogin.getUsername());
 
         if(!user.equals(userToLogin)) {
+            request.getSession().setAttribute("current_user", user);
             return "redirect:/account/registration";
         }
 
@@ -66,7 +74,7 @@ public class Account {
         return "main/forum";
     }
 
-    @RequestMapping(value="")
+    @GetMapping(value="")
     public String account(@ModelAttribute(value = "current_user") Users user) {
         if(user.getId() == null) {
             return "redirect:/account/registration";

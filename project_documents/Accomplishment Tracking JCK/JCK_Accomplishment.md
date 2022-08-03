@@ -1,4 +1,4 @@
-# [Abraham Kalovsky] - [Libratum] Accomplishment Tracking
+# [JEan Calmere Kubwayo] - [Libratum] Accomplishment Tracking
 
 Each team member should have their own version of this document.
 
@@ -36,79 +36,72 @@ instructors by the end of the unit._
 
 ## Week 1
 
-**Goals:** Plan the project: 
-1. What will the project be?
-2. What will the project entail?
-3. What will be each member's responsibilities?
+**Goals:**
+
+*Create project document with team members
 
 **Activity:**
-1. Learn Springboot and JSP.
+
+
+* find team name 
+* come up with the team's project
 
 **Important Docs, Commits, or Code Reviews**:
 
+* Project document 
+* Rubric
+* 
 **Things learned:**
-1. Working on communicating as a team.
-2. Delegation.
+
 
 ## Week 2
 
 **Goals:**
-1. build out base classes.
+
+Designs Dynamodb tables with YAML files and Json for populating the data
 
 **Activity:**
-
-Worked on:
-- User class
-- Post class
-- PostThread class
-- UserType class
-- Wine class
+Dyamodb table templates YMAL files
+Wine List data JSON file
 
 **Important Docs, Commits, or Code Reviews**:
-Added the base classes to the repository.
+
+Dyamodb table templates YMAL files
+Wine List data JSON file
 
 **Things learned:**
-How Lombok annotation works in base classes.
 
 ## Week 3
 
 **Goals:**
-Build out the repository/dao classes
-Learn CSS and implement if time permits.
+
+Create page mockups using Miro
+
 
 **Activity:**
-
-built out:
-- PostDao
-- PostThreadDao
-- UsersDao
-- WineDao
+Create page mockups using Miro
 
 **Important Docs, Commits, or Code Reviews**:
-Added the Dao classes to the Github repository
+
+Mockups pages and wireframe for the pages.
 
 **Things learned:**
-How a repository class is set up in springboot.
 
 ## Week 4
 
 **Goals:**
 
-Try to finish up getting the front end working.
-
-Implement a Like button on the posts.
-
+Project presentation and fix bugs 
 
 **Activity:**
 
-learning javascript
-
-finishing up project in prep for presentation
+Fix front end and endpoint bugs
 
 **Important Docs, Commits, or Code Reviews**:
 
+Reviews the front end codes and fixed some bugs.
+Final presentation slides. 
+
 **Things learned:**
 
-Javascript
-
-more html
+Debugging and Dynamodb functionalities
