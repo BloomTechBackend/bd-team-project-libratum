@@ -12,5 +12,20 @@
 <%@include file="../header.jsp"%>
 <body>
 
+<h3>CREATE NEW THREAD!</h3>
+<form action="${pageContext.request.contextPath}/thread/create-thread" method="post" onsubmit="return validate()">
+
+    <label for="title">Title</label>
+    <input id="Post" name="title" type="text"/>
+
+    <label for="Post">Post</label>
+    <input id="Post" name="post_content" type="text" />
+
+    <button type="submit">Create Post</button>
+
+
+
+</form>
+
 </body>
 </html>

@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../globals.jsp"%>
+
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
@@ -29,6 +30,7 @@
                 <form:label path="password">Password</form:label>
                 <form:input path="password" type="password" />
 
+
                 <form:button>Register</form:button>
             </form:form>
         </td>
@@ -41,6 +43,7 @@
 
                 <form:label path="password">Password</form:label>
                 <form:input path="password" type="password" />
+
 
                 <form:button>login</form:button>
             </form:form>
